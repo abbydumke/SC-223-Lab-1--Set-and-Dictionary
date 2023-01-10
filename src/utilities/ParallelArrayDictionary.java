@@ -2,6 +2,7 @@ package utilities;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -46,7 +47,6 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value>
 	@Override
 	public Value put(Key key, Value value) {
 		if(containsKey(key)) {
-			Value oldValue = _values.get(_keys.indexOf(key));
 			return _values.set(_keys.indexOf(key), value);
 		}
 		else {
@@ -58,41 +58,44 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value>
 
 	@Override
 	public Value remove(Object key) {
-		if(!_keys.contains(key)) return null; 
+		if(!_keys.contains(key)) return null;
 		
+		Value oldValue = _values.get(_keys.indexOf(key));
 		_values.remove(_values.get(_keys.indexOf(key)));
-		
-		return null;
+		return oldValue;
 	}
 
 	@Override
 	public void putAll(Map<? extends Key, ? extends Value> m) {
-		// TODO Auto-generated method stub
-		
+		Key[] typeDefinition = null;
+		Key[] newKeys = m.keySet().toArray(typeDefinition);
+		for(int i=0; i<newKeys.length; i++) {
+			put(newKeys[i], m.get(newKeys[i]));
+		}
 	}
 
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
+		_keys.clear();
+		_values.clear();
 		
 	}
 
 	@Override
 	public Set<Key> keySet() {
-		// TODO Auto-generated method stub
-		return null;
+		return (Set<Key>)_keys;
 	}
 
 	@Override
 	public Collection<Value> values() {
 		// TODO Auto-generated method stub
-		return null;
+		return (Collection<Value>) _values;
 	}
 
 	@Override
 	public Set<Entry<Key, Value>> entrySet() {
 		// TODO Auto-generated method stub
-		return null;
+		return (Set<Entry<Key, Value>>) this;
 	}
 
 }
