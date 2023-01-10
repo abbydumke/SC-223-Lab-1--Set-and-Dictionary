@@ -2,7 +2,6 @@ package utilities;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -12,11 +11,12 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value>
 	protected ArraySet<Value> _values;
 	protected ArrayList<Key> _keys;
 
-	public ParallelArrayDictionary()
-	{
-		// TODO Auto-generated constructor stub
+	
+	public ParallelArrayDictionary() {
+		_values = new ArraySet<Value>();
+		_keys = new ArrayList<Key>();
 	}
-
+	
 	@Override
 	public int size() {
 		return _keys.size();
@@ -81,6 +81,7 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value>
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Set<Key> keySet() {
 		return (Set<Key>)_keys;
@@ -92,6 +93,7 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value>
 		return (Collection<Value>) _values;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Set<Entry<Key, Value>> entrySet() {
 		// TODO Auto-generated method stub
