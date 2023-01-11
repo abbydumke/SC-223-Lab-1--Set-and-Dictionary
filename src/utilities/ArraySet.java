@@ -14,7 +14,7 @@ public class ArraySet<E> implements List<E>, Set<E>
 
 	public ArraySet()
 	{
-		_list= new ArrayList<E>();
+		_list= new ArrayList<>();
 	}
 
 	@Override

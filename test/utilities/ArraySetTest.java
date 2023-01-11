@@ -16,22 +16,22 @@ class ArraySetTest
 	@Test
 	void testAddE()
 	{
-		
-		ArrayList<Integer> aL = new ArrayList<Integer>();
+		ArraySet<Integer> aS  = new ArraySet<Integer>();
 		//test (adding 1 element)
-		int a1= 2;
-		aL.add(a1);
-		assertEquals(1, aL.size());
+		int a1= 4;
+		aS.add(a1);
+		assertEquals(1, aS.size());
+		
 		//test (adding 5 elements)
 		int a2 = 10;
-		aL.add(a2);
+		aS.add(a2);
 		int a3 = 1;
-		aL.add(a3);
+		aS.add(a3);
 		int a4 = 3;
-		aL.add(a4);
+		aS.add(a4);
 		int a5 = 8;
-		aL.add(a5);
-		assertEquals(5, aL.size());
+		aS.add(a5);
+		assertEquals(5, aS.size());
 	}
 
 	@Test
@@ -42,37 +42,59 @@ class ArraySetTest
 	@Test
 	void testRetainAll()
 	{
+		ArraySet<Integer> aS1  = new ArraySet<Integer>();
+		ArraySet<Integer> aS2  = new ArraySet<Integer>();
+		
+		//test (add three elements to one list and three elements to the other, retain all to first with second as parameter)
+		int a1= 1;
+		int a2 = 2;
+		int a3 = 3;
+		aS1.add(a1);
+		aS1.add(a2);
+		aS1.add(a3);
+		int a10= 10;
+		int a9 = 9;
+		int a8 = 8;
+		aS2.add(a10);
+		aS2.add(a9);
+		aS2.add(a8);
+		aS1.retainAll(aS2);
+		assertEquals(0,aS1.size());
+		assertEquals(3,aS2.size());
+		
 	}
 
 	@Test
 	void testRemoveAll()
 	{
-		ArrayList<Integer> aL = new ArrayList<Integer>();
+		ArraySet<Integer> aS  = new ArraySet<Integer>();
+		
 		//test (add 2 elements, remove all)
 		int a1= 2;
 		int a2 = 10;
-		aL.add(a1);
-		aL.add(a2);
-		aL.remove(0);
-		aL.remove(0);
-		assertEquals(0,aL.size());
+		aS.add(a1);
+		aS.add(a2);
+		aS.remove(0);
+		aS.remove(0);
+		assertEquals(0,aS.size());
 		
 		//test (add four elements to list, clear)
 		int a3 = 1;
 		int a4 = 2;
 		int a5 = 3;
 		int a6 = 4;
-		aL.add(a3);
-		aL.add(a4);
-		aL.add(a5);
-		aL.add(a6);
-		aL.clear();
-		assertEquals(0,aL.size());
+		aS.add(a3);
+		aS.add(a4);
+		aS.add(a5);
+		aS.add(a6);
+		aS.clear();
+		assertEquals(0,aS.size());
 		
 	}
 
 	@Test
 	void testAddAllIntCollectionOfQextendsE()
 	{
+		
 	}
 }
