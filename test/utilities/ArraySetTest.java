@@ -1,5 +1,6 @@
 /**
-  *This class tests the ArraySet class and it's add, addAll, addAll at index, retainAll, removeAll methods
+  * This class tests the ArraySet class and it's add, addAll,
+  * addAll at index, retainAll, removeAll methods.
   *
   *<p>Bugs: 
   *
@@ -15,19 +16,20 @@ import java.util.Collection;
 import org.junit.jupiter.api.Test;
 class ArraySetTest
 {
-	@Test
+	@Test  //NOT COMPLETED FIXME
 	void testArraySetCollectionOfE()
 	{
 		ArraySet<Integer> aS  = new ArraySet<Integer>();
 		
 		//add items to ArraySet and then see if they are there
-		int a1 = 1;
+		
+		/*int a1 = 1;
 		int a2 = 2;
 		int a3 = 3;
 		int a4 = 4;
 		int a5 = 5;
-		
 		Arrays.asList(a1, a2, a3, a4, a5);
+		*/
 	}
 	@Test
 	void testAddE()
