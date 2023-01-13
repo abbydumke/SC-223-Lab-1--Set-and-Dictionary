@@ -55,7 +55,7 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value>
 	@Override
 	public Value get(Object key)
 	{
-		if(_keys.indexOf(key) < 0) // if desired key is not in _keys
+		if(!containsKey(key))
 		{
 			return null;
 		}
@@ -71,6 +71,7 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value>
 			return _values.set(_keys.indexOf(key), value);
 		}
 		
+		// adds a new associated key and value to the dictionary
 		_keys.add(key);
 		_values.add(value);
 		return null;
@@ -84,7 +85,10 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value>
 			return null;
 		}
 		
-		return _values.remove(_keys.indexOf(key));
+		// removes the associated key and value from the dictionary
+		int index = _keys.indexOf(key);
+		_keys.remove(index);
+		return _values.remove(index);
 	}
 
 	@Override

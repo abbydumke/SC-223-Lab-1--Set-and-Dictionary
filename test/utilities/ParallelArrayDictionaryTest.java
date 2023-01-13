@@ -1,9 +1,8 @@
 /**
-  * Write a succinct, meaningful description of the class here. You should avoid wordiness 
-  * and redundancy. If necessary, additional paragraphs should be preceded by <p>,
-  * the html tag for a new paragraph.
-  *
-  *<p>Bugs: 
+  * The class tests the ParallelArrayDictionary class's default constructor, get, put,
+  * remove, putAll, and clear methods. 
+  * 
+  * <p>Bugs: 
   *
   * @author Abby Dumke, Jake Shore
   * @date <date of completion>
@@ -11,8 +10,7 @@
 
 package utilities;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,70 +22,125 @@ class ParallelArrayDictionaryTest
 		assertNotNull(dict);
 		assertEquals(0, dict.size());
 	}
-
+	
 	@Test
-	void testGet() {
+	void testGetNotInDictionary() {
 		ParallelArrayDictionary<Integer, Character> dict = new ParallelArrayDictionary<Integer, Character>();
-		dict.put(1,'c');
-		assertEquals('c', dict.get(1));
+		assertNull(dict.get(1));
 	}
 
 	@Test
-	void testPutOneE() {
+	void testPutAndGetOne() {
 		ParallelArrayDictionary<Integer, Character> dict = new ParallelArrayDictionary<Integer, Character>();
-		dict.put(1,'a');
+		assertNull(dict.put(1,'a'));
 		assertEquals('a', dict.get(1));
 		assertEquals(1, dict.size());
 	}
 	
 	@Test
-	void testPutFiveE() {
+	void testPutAndGetFive() {
 		ParallelArrayDictionary<Integer, Character> dict = new ParallelArrayDictionary<Integer, Character>();
 		for(int i=1; i<=5; i++) {
-			dict.put(i,(char)('a'+i-1));
-			assertEquals((char)('a'+i-1), dict.get(i), "value a key="+i+" is not "+(char)('a'+i-1));
+			assertNull(dict.put(i, makeCharacter(i-1)));
+			assertEquals(makeCharacter(i-1), dict.get(i));
 		}
 		assertEquals(5, dict.size());
 	}
 	
 	@Test
-	void testPutNullKey() {
+	void testPutandGetNullKey() {
 		ParallelArrayDictionary<Integer, Character> dict = new ParallelArrayDictionary<Integer, Character>();
 		dict.put(null, 'a');
 		assertEquals('a', dict.get(null));
 	}
 	
 	@Test
-	void testPutNullValue() {
+	void testPutAndGetNullValue() {
 		ParallelArrayDictionary<Integer, Character> dict = new ParallelArrayDictionary<Integer, Character>();
 		dict.put(1, null);
 		assertEquals(null, dict.get(1));
 	}
 	
 	@Test
-	void testPutEmptyKey() {
+	void testPutAndGetEmptyKey() {
 		ParallelArrayDictionary<String, String> dict = new ParallelArrayDictionary<String, String>();
 		dict.put("", "world");
 		assertEquals("world", dict.get(""));
 	}
 	
 	@Test
-	void testPutEmptyValue() {
+	void testPutAndGetEmptyValue() {
 		ParallelArrayDictionary<String, String> dict = new ParallelArrayDictionary<String, String>();
 		dict.put("Hello", "");
 		assertEquals("", dict.get("Hello"));
 	}
 	
 	@Test
-	void testPutModify() {
+	void testPutModifyAndGetOne() {
 		ParallelArrayDictionary<Integer, Character> dict = new ParallelArrayDictionary<Integer, Character>();
 		dict.put(1, 'a');
-		dict.put(1, 'b');
+		assertEquals('a', dict.put(1, 'b'));
 		assertEquals('b', dict.get(1));
+		assertEquals(1, dict.size());
+	}
+	
+	@Test
+	void testPutModifyAndGetFive() {
+		ParallelArrayDictionary<Integer, Character> dict = new ParallelArrayDictionary<Integer, Character>();
+		for(int i=1; i<=5; i++) {
+			dict.put(i,makeCharacter(i-1));
+			assertEquals(makeCharacter(i-1), dict.put(i, makeCharacter(i)));
+			assertEquals(makeCharacter(i), dict.get(i));
+		}
+		assertEquals(5, dict.size());
 	}
 
 	@Test
-	void testRemove() {
+	void testRemoveOne() {
+		ParallelArrayDictionary<Integer, Character> dict = new ParallelArrayDictionary<Integer, Character>();
+		dict.put(1, 'a');
+		assertEquals('a', dict.remove(1));
+	}
+	
+	@Test
+	void testRemoveFive() {
+		ParallelArrayDictionary<Integer, Character> dict = new ParallelArrayDictionary<Integer, Character>();
+		for(int i=1; i<=5; i++) {
+			dict.put(i, makeCharacter(i-1));
+			System.out.println(i + " " + dict.get(i));
+		}
+		for(int i=1; i<=5; i++) {
+			assertEquals(makeCharacter(i-1), dict.remove(i));
+		}
+		assertEquals(0, dict.size());
+	}
+	
+	@Test
+	void testRemoveSome() {
+	}
+	
+	@Test
+	void testRemoveNullKey() {
+	}
+	
+	@Test
+	void testRemoveNullValue() {
+	}
+	
+	@Test
+	void testRemoveEmptyKey() {
+	}
+	
+	@Test
+	void testRemoveEmptyValue() {
+	}
+	
+	@Test
+	void testRemoveNotInDictionary() {
+	}
+	
+	@Test
+	void testRemoveThenAddThenRemove() {
 	}
 
 	@Test
@@ -96,5 +149,13 @@ class ParallelArrayDictionaryTest
 
 	@Test
 	void testClear() {
+	}
+	
+	@Test
+	void testAddThenClearThenAdd() {
+	}
+	
+	private char makeCharacter(int offset) {
+		return (char)('a' + offset);
 	}
 }

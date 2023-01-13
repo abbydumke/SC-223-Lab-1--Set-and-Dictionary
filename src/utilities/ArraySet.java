@@ -51,7 +51,6 @@ public class ArraySet<E> implements List<E>, Set<E>
 	@Override
 	public Object[] toArray() {
 		return _list.toArray();
-		
 	}
 
 	@Override
@@ -77,7 +76,6 @@ public class ArraySet<E> implements List<E>, Set<E>
 	@Override
 	public boolean addAll(Collection<? extends E> c) {
 		return _list.addAll(c);
-	
 	}
 
 	@Override
