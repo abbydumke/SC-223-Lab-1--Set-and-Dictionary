@@ -1,3 +1,14 @@
+/**
+  * Write a succinct, meaningful description of the class here. You should avoid wordiness 
+  * and redundancy. If necessary, additional paragraphs should be preceded by <p>,
+  * the html tag for a new paragraph.
+  *
+  *<p>Bugs: 
+  *
+  * @author Abby Dumke, Jake Shore
+  * @date <date of completion>
+  */
+
 package utilities;
 
 import java.util.ArrayList;
@@ -44,10 +55,11 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value>
 	@Override
 	public Value get(Object key)
 	{
-		if(_keys.indexOf(key) < 0)
+		if(_keys.indexOf(key) < 0) // if desired key is not in _keys
 		{
 			return null;
 		}
+		
 		return _values.get(_keys.indexOf(key));
 	}
 
@@ -56,14 +68,12 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value>
 	{
 		if(containsKey(key))
 		{
-			return _values.set(_values.indexOf(value), value);
+			return _values.set(_keys.indexOf(key), value);
 		}
-		else
-		{
-			_keys.add(key);
-			_values.add(value);
-			return null;
-		}
+		
+		_keys.add(key);
+		_values.add(value);
+		return null;
 	}
 
 	@Override
@@ -73,6 +83,7 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value>
 		{
 			return null;
 		}
+		
 		return _values.remove(_keys.indexOf(key));
 	}
 

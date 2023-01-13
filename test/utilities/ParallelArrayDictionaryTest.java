@@ -1,3 +1,14 @@
+/**
+  * Write a succinct, meaningful description of the class here. You should avoid wordiness 
+  * and redundancy. If necessary, additional paragraphs should be preceded by <p>,
+  * the html tag for a new paragraph.
+  *
+  *<p>Bugs: 
+  *
+  * @author Abby Dumke, Jake Shore
+  * @date <date of completion>
+  */
+
 package utilities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -34,7 +45,7 @@ class ParallelArrayDictionaryTest
 		ParallelArrayDictionary<Integer, Character> dict = new ParallelArrayDictionary<Integer, Character>();
 		for(int i=1; i<=5; i++) {
 			dict.put(i,(char)('a'+i-1));
-			assertEquals((char)('a'+i-1), dict.get(i));
+			assertEquals((char)('a'+i-1), dict.get(i), "value a key="+i+" is not "+(char)('a'+i-1));
 		}
 		assertEquals(5, dict.size());
 	}

@@ -1,3 +1,14 @@
+/**
+  * Write a succinct, meaningful description of the class here. You should avoid wordiness 
+  * and redundancy. If necessary, additional paragraphs should be preceded by <p>,
+  * the html tag for a new paragraph.
+  *
+  *<p>Bugs: 
+  *
+  * @author Abby Dumke, Jake Shore
+  * @date <date of completion>
+  */
+
 package utilities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
