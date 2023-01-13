@@ -104,43 +104,65 @@ class ParallelArrayDictionaryTest
 	
 	@Test
 	void testRemoveFive() {
-		ParallelArrayDictionary<Integer, Character> dict = new ParallelArrayDictionary<Integer, Character>();
-		for(int i=1; i<=5; i++) {
-			dict.put(i, makeCharacter(i-1));
-			System.out.println(i + " " + dict.get(i));
-		}
-		for(int i=1; i<=5; i++) {
-			assertEquals(makeCharacter(i-1), dict.remove(i));
-		}
-		assertEquals(0, dict.size());
+		addAndRemove(5, 5);
 	}
 	
 	@Test
 	void testRemoveSome() {
+		addAndRemove(5, 3);
 	}
 	
 	@Test
 	void testRemoveNullKey() {
+		ParallelArrayDictionary<Integer, Character> dict = new ParallelArrayDictionary<Integer, Character>();
+		dict.put(null, 'a');
+		assertEquals('a', dict.remove(null));
 	}
 	
 	@Test
 	void testRemoveNullValue() {
+		ParallelArrayDictionary<Integer, Character> dict = new ParallelArrayDictionary<Integer, Character>();
+		dict.put(1, null);
+		assertEquals(null, dict.remove(1));
 	}
 	
 	@Test
 	void testRemoveEmptyKey() {
+		ParallelArrayDictionary<String, String> dict = new ParallelArrayDictionary<String, String>();
+		dict.put("", "World");
+		assertEquals("World", dict.remove(""));
 	}
 	
 	@Test
 	void testRemoveEmptyValue() {
+		ParallelArrayDictionary<String, String> dict = new ParallelArrayDictionary<String, String>();
+		dict.put("Hello", "");
+		assertEquals("", dict.remove("Hello"));
 	}
 	
 	@Test
 	void testRemoveNotInDictionary() {
+		ParallelArrayDictionary<Integer, Character> dict = new ParallelArrayDictionary<Integer, Character>();
+		assertEquals(null, dict.remove(1));
+		assertEquals(0, dict.size());
 	}
 	
 	@Test
-	void testRemoveThenAddThenRemove() {
+	void testAddThenRemoveThanAddSame() {
+		ParallelArrayDictionary<Integer, Character> dict = new ParallelArrayDictionary<Integer, Character>();
+		dict.put(1, 'a');
+		assertEquals('a', dict.remove(1));
+		assertNull(dict.put(1,'b'));
+		assertEquals(1, dict.size());
+	}
+	
+	@Test
+	void testRemoveThenAddThenRemoveDifferent() {
+		ParallelArrayDictionary<Integer, Character> dict = new ParallelArrayDictionary<Integer, Character>();
+		dict.put(1, 'a');
+		assertEquals('a', dict.remove(1));
+		assertNull(dict.put(2,'b'));
+		assertEquals(1, dict.size());
 	}
 
 	@Test
@@ -157,5 +179,16 @@ class ParallelArrayDictionaryTest
 	
 	private char makeCharacter(int offset) {
 		return (char)('a' + offset);
+	}
+	
+	private void addAndRemove(int addAmount, int removeAmount) {
+		ParallelArrayDictionary<Integer, Character> dict = new ParallelArrayDictionary<Integer, Character>();
+		for(int i=1; i<=addAmount; i++) {
+			dict.put(i, makeCharacter(i-1));
+		}
+		for(int i=1; i<=removeAmount; i++) {
+			assertEquals(makeCharacter(i-1), dict.remove(i));
+		}
+		assertEquals(addAmount - removeAmount, dict.size());
 	}
 }
