@@ -91,14 +91,12 @@ public class ArraySet<E> implements List<E>, Set<E>
 
 	@Override
 	public E get(int index) {
-		_list.get(index);
-		return null;
+		return _list.get(index);
 	}
 
 	@Override
 	public E set(int index, E element) {
-		_list.set(index,element);
-		return null;
+		return _list.set(index,element);
 	}
 
 	@Override
@@ -109,8 +107,7 @@ public class ArraySet<E> implements List<E>, Set<E>
 
 	@Override
 	public E remove(int index) {
-		_list.remove(index);
-		return null;
+		return _list.remove(index);
 	}
 
 	@Override
@@ -137,7 +134,6 @@ public class ArraySet<E> implements List<E>, Set<E>
 	@Override
 	public List<E> subList(int fromIndex, int toIndex) {
 		return _list.subList(fromIndex, toIndex);
-		
 	}
 
 	@Override
