@@ -75,7 +75,6 @@ class ParallelArrayDictionaryTest
 		assertEquals('b', dict.get(1));
 	}
 
-
 	@Test
 	void testRemove() {
 	}

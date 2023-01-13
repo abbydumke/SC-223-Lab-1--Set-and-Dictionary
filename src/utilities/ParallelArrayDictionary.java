@@ -11,44 +11,55 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value>
 	protected ArrayList<Key> _keys;
 	protected ArraySet<Value> _values;
 	
-	public ParallelArrayDictionary() {
+	public ParallelArrayDictionary()
+	{
 		_values = new ArraySet<Value>();
 		_keys = new ArrayList<Key>();
 	}
 	
 	@Override
-	public int size() {
+	public int size()
+	{
 		return _keys.size();
 	}
 
 	@Override
-	public boolean isEmpty() {
+	public boolean isEmpty()
+	{
 		return _keys.isEmpty();
 	}
 
 	@Override
-	public boolean containsKey(Object key) {
+	public boolean containsKey(Object key)
+	{
 		return _keys.contains(key);
 	}
 
 	@Override
-	public boolean containsValue(Object value) {
+	public boolean containsValue(Object value)
+	{
 		return _values.contains(value);
 	}
 
 	@Override
-	public Value get(Object key) {
-		if(_keys.indexOf(key) < 0) return null;
-		
+	public Value get(Object key)
+	{
+		if(_keys.indexOf(key) < 0)
+		{
+			return null;
+		}
 		return _values.get(_keys.indexOf(key));
 	}
 
 	@Override
-	public Value put(Key key, Value value) {
-		if(containsKey(key)) {
-			return _values.set(_keys.indexOf(key), value);
+	public Value put(Key key, Value value)
+	{
+		if(containsKey(key))
+		{
+			return _values.set(_values.indexOf(value), value);
 		}
-		else {
+		else
+		{
 			_keys.add(key);
 			_values.add(value);
 			return null;
@@ -56,21 +67,20 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value>
 	}
 
 	@Override
-	public Value remove(Object key) {
-		if(!_keys.contains(key)) return null;
-		
-		Value oldValue = _values.get(_keys.indexOf(key));
-		_values.remove(_values.get(_keys.indexOf(key)));
-		return oldValue;
+	public Value remove(Object key)
+	{
+		if(!_keys.contains(key))
+		{
+			return null;
+		}
+		return _values.remove(_keys.indexOf(key));
 	}
 
 	@Override
-	public void putAll(Map<? extends Key, ? extends Value> m) {
-		Key[] typeDefinition = null;
-		Key[] newKeys = m.keySet().toArray(typeDefinition);
-		for(int i=0; i<newKeys.length; i++) {
-			put(newKeys[i], m.get(newKeys[i]));
-		}
+	public void putAll(Map<? extends Key, ? extends Value> m)
+	{
+		_keys.addAll(m.keySet());
+		_values.addAll(m.values());	
 	}
 
 	@Override
@@ -88,15 +98,13 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value>
 
 	@Override
 	public Collection<Value> values() {
-		// TODO Auto-generated method stub
 		return (Collection<Value>) _values;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public Set<Entry<Key, Value>> entrySet() {
-		// TODO Auto-generated method stub
-		return (Set<Entry<Key, Value>>) this;
+		return (Set<Entry<Key, Value>>)this;
 	}
 
 }
