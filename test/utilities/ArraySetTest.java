@@ -1,7 +1,5 @@
 /**
-  * Write a succinct, meaningful description of the class here. You should avoid wordiness 
-  * and redundancy. If necessary, additional paragraphs should be preceded by <p>,
-  * the html tag for a new paragraph.
+  *This class tests the ArraySet class and it's add, addAll, addAll at index, retainAll, removeAll methods
   *
   *<p>Bugs: 
   *
@@ -10,20 +8,27 @@
   */
 
 package utilities;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.util.ArrayList;
-
+import java.util.Arrays;
+import java.util.Collection;
 import org.junit.jupiter.api.Test;
-
 class ArraySetTest
 {
 	@Test
 	void testArraySetCollectionOfE()
 	{
+		ArraySet<Integer> aS  = new ArraySet<Integer>();
+		
+		//add items to ArraySet and then see if they are there
+		int a1 = 1;
+		int a2 = 2;
+		int a3 = 3;
+		int a4 = 4;
+		int a5 = 5;
+		
+		Arrays.asList(a1, a2, a3, a4, a5);
 	}
-
 	@Test
 	void testAddE()
 	{
@@ -33,7 +38,7 @@ class ArraySetTest
 		aS.add(a1);
 		assertEquals(1, aS.size());
 		
-		//test (adding 5 elements)
+		//test (adding 5 (or four more) elements)
 		int a2 = 10;
 		aS.add(a2);
 		int a3 = 1;
@@ -44,12 +49,28 @@ class ArraySetTest
 		aS.add(a5);
 		assertEquals(5, aS.size());
 	}
-
 	@Test
 	void testAddAllCollectionOfQextendsE()
 	{
+		//test (add all five integers to ArraySet)
+				ArraySet<Integer> aS  = new ArraySet<Integer>();
+				int a1 = 1;
+				int a2 = 2;
+				int a3 = 3;
+				int a4 = 4;
+				int a5 = 5;
+				aS.addAll(Arrays.asList(a1, a2, a3, a4, a5));
+				assertEquals(5,aS.size());
+				
+				//test (add five more integers to ArraySet)
+				int a6 = 6;
+				int a7 = 7;
+				int a8 = 8;
+				int a9 = 9;
+				int a10 = 10;
+				aS.addAll(Arrays.asList(a6, a7, a8, a9, a10));
+				assertEquals(10,aS.size());
 	}
-
 	@Test
 	void testRetainAll()
 	{
@@ -74,7 +95,6 @@ class ArraySetTest
 		assertEquals(3,aS2.size());
 		
 	}
-
 	@Test
 	void testRemoveAll()
 	{
@@ -102,10 +122,26 @@ class ArraySetTest
 		assertEquals(0,aS.size());
 		
 	}
-
 	@Test
 	void testAddAllIntCollectionOfQextendsE()
 	{
+		ArraySet<Integer> aS  = new ArraySet<Integer>();
+		
+		//test (add two items to list, then add three at index one. 1, 3, 4, 5, 2)
+		int a1 = 1;
+		int a2 = 2;
+		int a3 = 3;
+		int a4 = 4;
+		int a5 = 5;
+		aS.add(a1);
+		aS.add(a2);
+		aS.addAll(1,Arrays.asList(a3, a4, a5));
+		assertEquals(5,aS.size());
+		aS.clear();
+		
+		//test (add three items from empty list at the first index.
+		aS.addAll(0, Arrays.asList(a1,a2));
+		assertEquals(2,aS.size());
 		
 	}
 }
