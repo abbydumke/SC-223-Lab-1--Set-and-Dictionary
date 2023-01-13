@@ -13,6 +13,7 @@ package utilities;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -91,11 +92,15 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value>
 		return _values.remove(index);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void putAll(Map<? extends Key, ? extends Value> m)
 	{
-		_keys.addAll(m.keySet());
-		_values.addAll(m.values());
+		Set<?> map = m.entrySet();
+		
+		for(int i=0; i<map.size(); i++) {
+			put((Key)((Entry<Key, Value>) map.toArray()[i]).getKey(), (Value)((Entry<Key,Value>) map.toArray()[i]).getValue());
+		}
 	}
 
 	@Override
