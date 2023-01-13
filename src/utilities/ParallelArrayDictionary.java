@@ -8,9 +8,8 @@ import java.util.Set;
 public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value>
 {
 	
-	protected ArraySet<Value> _values;
 	protected ArrayList<Key> _keys;
-
+	protected ArraySet<Value> _values;
 	
 	public ParallelArrayDictionary() {
 		_values = new ArraySet<Value>();
