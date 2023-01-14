@@ -10,26 +10,38 @@
 
 package utilities;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 class ArraySetTest
 {
-	@Test  //NOT COMPLETED FIXME
+	@Test  
 	void testArraySetCollectionOfE()
 	{
 		ArraySet<Integer> aS  = new ArraySet<Integer>();
 		
-		//add items to ArraySet and then see if they are there
-		
-		/*int a1 = 1;
+		//test (no elements in collection
+		assertEquals(0,aS.size());
+	
+		//test (unique elements in collection)
+		int a1 = 1;
 		int a2 = 2;
 		int a3 = 3;
-		int a4 = 4;
-		int a5 = 5;
-		Arrays.asList(a1, a2, a3, a4, a5);
-		*/
+		aS.addAll(Arrays.asList(a1, a2, a3));
+		assertEquals(3,aS.size());
+		aS.clear();
+	
+		
+		//test (redundant elements in collection)
+		aS.addAll(Arrays.asList(a1, a1, a1, a3, a1));
+		assertEquals(5,aS.size());
+		
+		
 	}
 	@Test
 	void testAddE()
