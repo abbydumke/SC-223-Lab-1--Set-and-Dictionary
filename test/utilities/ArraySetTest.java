@@ -20,7 +20,7 @@ class ArraySetTest
 	{
 		ArraySet<Integer> aS  = new ArraySet<Integer>();
 		
-		//test (no elements in collection
+		//test (no elements in collection)
 		assertEquals(0,aS.size());
 	
 		//test (unique elements in collection)
@@ -34,7 +34,7 @@ class ArraySetTest
 		
 		//test (redundant elements in collection)
 		aS.addAll(Arrays.asList(a1, a1, a1, a3, a1));
-		assertEquals(5,aS.size());
+		assertEquals(2, aS.size());
 		
 		
 	}
@@ -57,6 +57,26 @@ class ArraySetTest
 		int a5 = 8;
 		aS.add(a5);
 		assertEquals(5, aS.size());
+	}
+	@Test
+	void testAddMultipleOfSameE()
+	{
+		ArraySet<Integer> aS  = new ArraySet<Integer>();
+		//test (adding 1 element)
+		int a1= 4;
+		aS.add(a1);
+		assertEquals(1, aS.size());
+		
+		//test (adding 5 (or four more) elements)
+		int a2 = 10;
+		aS.add(a2);
+		int a3 = 4;
+		aS.add(a3);
+		int a4 = 3;
+		aS.add(a4);
+		int a5 = 10;
+		aS.add(a5);
+		assertEquals(3, aS.size());
 	}
 	@Test
 	void testAddAllCollectionOfQextendsE()
