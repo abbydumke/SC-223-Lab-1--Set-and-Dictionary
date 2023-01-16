@@ -35,7 +35,9 @@ class ArraySetTest
 		//test (redundant elements in collection)
 		aS.addAll(Arrays.asList(a1, a1, a1, a3, a1));
 		assertEquals(2, aS.size());
-		
+		////test (add number that is in a set again, should not change the number in the set)
+		aS.addAll(Arrays.asList(a3));
+		assertEquals(2, aS.size());
 		
 	}
 	@Test
@@ -43,18 +45,24 @@ class ArraySetTest
 	{
 		ArraySet<Integer> aS  = new ArraySet<Integer>();
 		//test (adding 1 element)
-		int a1= 4;
+		int a1= 1;
 		aS.add(a1);
 		assertEquals(1, aS.size());
 		
 		//test (adding 5 (or four more) elements)
-		int a2 = 10;
+		int a2 = 2;
 		aS.add(a2);
-		int a3 = 1;
+		int a3 = 3;
 		aS.add(a3);
-		int a4 = 3;
+		int a4 = 4;
 		aS.add(a4);
-		int a5 = 8;
+		int a5 = 5;
+		aS.add(a5);
+		assertEquals(5, aS.size());
+		
+		//test (adding elements to the set that are already in the set. Should make no change)
+		aS.add(a1);
+		aS.add(a2);
 		aS.add(a5);
 		assertEquals(5, aS.size());
 	}
@@ -62,21 +70,14 @@ class ArraySetTest
 	void testAddMultipleOfSameE()
 	{
 		ArraySet<Integer> aS  = new ArraySet<Integer>();
-		//test (adding 1 element)
+		//test (adding three redundant elements)
 		int a1= 4;
+		aS.add(a1);
+		aS.add(a1);
 		aS.add(a1);
 		assertEquals(1, aS.size());
 		
-		//test (adding 5 (or four more) elements)
-		int a2 = 10;
-		aS.add(a2);
-		int a3 = 4;
-		aS.add(a3);
-		int a4 = 3;
-		aS.add(a4);
-		int a5 = 10;
-		aS.add(a5);
-		assertEquals(3, aS.size());
+		
 	}
 	@Test
 	void testAddAllCollectionOfQextendsE()
@@ -91,14 +92,16 @@ class ArraySetTest
 				aS.addAll(Arrays.asList(a1, a2, a3, a4, a5));
 				assertEquals(5,aS.size());
 				
-				//test (add five more integers to ArraySet)
+				//test (add two more integers to ArraySet and three redundant integers)
 				int a6 = 6;
 				int a7 = 7;
 				int a8 = 8;
-				int a9 = 9;
-				int a10 = 10;
+				int a9 = 8;
+				int a10 = 8;
 				aS.addAll(Arrays.asList(a6, a7, a8, a9, a10));
-				assertEquals(10,aS.size());
+				assertEquals(8,aS.size());
+				
+				
 	}
 	@Test
 	void testRetainAll()
@@ -122,7 +125,24 @@ class ArraySetTest
 		aS1.retainAll(aS2);
 		assertEquals(0,aS1.size());
 		assertEquals(3,aS2.size());
+		aS1.clear();
+		aS2.clear();
 		
+		//test (add three elements to one list and three elements to the other,
+		//two of which are the same, and one is a subset of another.
+		//retain all to first with second as parameter. should remove only one in the first set.)
+		a10 = 1;
+		a9 = 3;
+		a8 = 3;
+		aS1.add(a1);
+		aS1.add(a2);
+		aS1.add(a3);
+		aS2.add(a10);
+		aS2.add(a9);
+		aS2.add(a8);
+		aS1.retainAll(aS2);
+		assertEquals(2,aS1.size());
+		assertEquals(2,aS2.size());
 	}
 	@Test
 	void testRemoveAll()
@@ -172,5 +192,8 @@ class ArraySetTest
 		aS.addAll(0, Arrays.asList(a1,a2));
 		assertEquals(2,aS.size());
 		
+		//test (add elements that are already in the set at an index. Should not add)
+		aS.addAll(1, Arrays.asList(a1,a2));
+		assertEquals(2,aS.size());
 	}
 }
