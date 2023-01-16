@@ -1,7 +1,6 @@
 /**
-  * Write a succinct, meaningful description of the class here. You should avoid wordiness 
-  * and redundancy. If necessary, additional paragraphs should be preceded by <p>,
-  * the html tag for a new paragraph.
+  * Implements the List and Set classes
+  * Contains a unique set of elements that can be inserted, accessed and removed.
   *
   *<p>Bugs: 
   *
