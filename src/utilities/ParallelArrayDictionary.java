@@ -1,7 +1,7 @@
 /**
-  * Write a succinct, meaningful description of the class here. You should avoid wordiness 
-  * and redundancy. If necessary, additional paragraphs should be preceded by <p>,
-  * the html tag for a new paragraph.
+  * Implements the Map interface
+  * Maps pairs keys and values such that every key is unique.  Data is inserted in pairs
+  * and accessed and removed using the key.
   *
   *<p>Bugs: 
   *
@@ -20,13 +20,13 @@ import java.util.Set;
 public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value>
 {
 	
-	protected ArrayList<Key> _keys;
-	protected ArraySet<Value> _values;
+	protected ArraySet<Key> _keys;
+	protected ArrayList<Value> _values;
 	
 	public ParallelArrayDictionary()
 	{
-		_values = new ArraySet<Value>();
-		_keys = new ArrayList<Key>();
+		_values = new ArrayList<Value>();
+		_keys = new ArraySet<Key>();
 	}
 	
 	@Override

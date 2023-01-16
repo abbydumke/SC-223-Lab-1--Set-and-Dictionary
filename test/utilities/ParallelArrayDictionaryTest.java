@@ -1,6 +1,6 @@
 /**
-  * The class tests the ParallelArrayDictionary class's default constructor, get, put,
-  * remove, putAll, and clear methods. 
+  * The class tests the ParallelArrayDictionary class's get, put, remove, putAll,
+  * and clear methods. 
   * 
   * <p>Bugs: 
   *
@@ -17,14 +17,6 @@ import org.junit.jupiter.api.Test;
 
 class ParallelArrayDictionaryTest
 {
-	@Test
-	void testParallelArrayDictionary()
-	{
-		ParallelArrayDictionary<Integer, Character> dict = new ParallelArrayDictionary<Integer, Character>();
-		
-		assertNotNull(dict);
-		assertEquals(0, dict.size());
-	}
 	
 	@Test
 	void testGetNotInDictionary()
@@ -283,31 +275,84 @@ class ParallelArrayDictionaryTest
 	@Test
 	void testPutAllNullKey()
 	{
+		ParallelArrayDictionary<Integer, Character> dict = new ParallelArrayDictionary<Integer, Character>();
+		HashMap<Integer, Character> map = new HashMap<Integer, Character>();
+		
+		map.put(null, 'a');
+		dict.putAll(map);
+		
+		assertEquals('a', dict.get(null));
+		assertEquals(1, dict.size());
 	}
 	
 	@Test
 	void testPutAllNullValue()
 	{
+		ParallelArrayDictionary<Integer, Character> dict = new ParallelArrayDictionary<Integer, Character>();
+		HashMap<Integer, Character> map = new HashMap<Integer, Character>();
+		
+		map.put(1, null);
+		dict.putAll(map);
+		
+		assertEquals(null, dict.get(1));
+		assertEquals(1, dict.size());
 	}
 	
 	@Test
 	void testPutAllEmptyKey()
 	{
+		ParallelArrayDictionary<String, String> dict = new ParallelArrayDictionary<String, String>();
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		map.put("", "World");
+		dict.putAll(map);
+		
+		assertEquals("World", dict.get(""));
+		assertEquals(1, dict.size());
 	}
 	
 	@Test
 	void testPutAllEmptyValue()
 	{
+		ParallelArrayDictionary<String, String> dict = new ParallelArrayDictionary<String, String>();
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		map.put("Hello", "");
+		dict.putAll(map);
+		
+		assertEquals("", dict.get("Hello"));
+		assertEquals(1, dict.size());
+	}
+	
+	@Test
+	void testPutAllEmptyMap()
+	{
+		ParallelArrayDictionary<String, String> dict = new ParallelArrayDictionary<String, String>();
+		
+		dict.putAll(new HashMap<String, String>());
+		
+		assertEquals(0, dict.size());
 	}
 	
 	@Test
 	void testClear()
 	{
+		ParallelArrayDictionary<Integer, Character> dict = new ParallelArrayDictionary<Integer, Character>();
+		
+		dict.put(1,'a');
+		dict.clear();
+		assertEquals(0, dict.size());
 	}
 	
 	@Test
-	void testAddThenClearThenAdd()
+	void testClearThenPut()
 	{
+		ParallelArrayDictionary<Integer, Character> dict = new ParallelArrayDictionary<Integer, Character>();
+		
+		dict.put(1,'a');
+		dict.clear();
+		assertNull(dict.put(1,'a'));
+		assertEquals(1, dict.size());
 	}
 	
 	private char makeCharacter(int offset)
