@@ -10,6 +10,8 @@
 
 package utilities;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
@@ -154,21 +156,23 @@ class ArraySetTest
 		int a2 = 10;
 		aS.add(a1);
 		aS.add(a2);
-		aS.remove(0);
-		aS.remove(0);
+		aS.removeAll(aS);
 		assertEquals(0,aS.size());
 		
-		//test (add four elements to list, clear)
+		//test (add four elements to one list, add two of the same to another list, remove all from another list)
 		int a3 = 1;
 		int a4 = 2;
 		int a5 = 3;
 		int a6 = 4;
+		ArrayList<Integer> aL = new ArrayList<Integer>();
+		aL.add(a3);
+		aL.add(a4);
 		aS.add(a3);
 		aS.add(a4);
 		aS.add(a5);
 		aS.add(a6);
-		aS.clear();
-		assertEquals(0,aS.size());
+		aS.removeAll(aL);
+		assertEquals(2,aS.size());
 		
 	}
 	@Test
