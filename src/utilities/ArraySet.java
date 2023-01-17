@@ -2,10 +2,8 @@
   * Implements the List and Set classes
   * Contains a unique set of elements that can be inserted, accessed and removed.
   *
-  *<p>Bugs: 
-  *
   * @author Abby Dumke, Jake Shore
-  * @date <date of completion>
+  * @date 1/17/2023
   */
 
 package utilities;

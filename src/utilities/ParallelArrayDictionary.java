@@ -3,10 +3,8 @@
   * Maps pairs keys and values such that every key is unique.  Data is inserted in pairs
   * and accessed and removed using the key.
   *
-  *<p>Bugs: 
-  *
   * @author Abby Dumke, Jake Shore
-  * @date <date of completion>
+  * @date 1/17/2023
   */
 
 package utilities;

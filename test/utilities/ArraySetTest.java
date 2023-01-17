@@ -2,10 +2,8 @@
   * This class tests the ArraySet class and it's add, addAll,
   * addAll at index, retainAll, removeAll methods.
   *
-  *<p>Bugs: 
-  *
   * @author Abby Dumke, Jake Shore
-  * @date <date of completion>
+  * @date 1/17/2023
   */
 
 package utilities;
